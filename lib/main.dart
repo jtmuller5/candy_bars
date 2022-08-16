@@ -32,20 +32,23 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       navigatorKey: navigatorKey,
       theme: ThemeData(
-        //primarySwatch: Colors.deepOrange,
-        fontFamily: GoogleFonts.permanentMarker().fontFamily,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8)
-          )
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.deepOrange
-        )
-      ),
+          //primarySwatch: Colors.deepOrange,
+          fontFamily: GoogleFonts.permanentMarker().fontFamily,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          appBarTheme: AppBarTheme(
+              elevation: 0,
+              color: Colors.transparent,
+              titleTextStyle: TextStyle(
+                fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                color: Colors.black,
+                fontSize: 28,
+              )),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange)),
       home: const SplashView(),
     );
   }

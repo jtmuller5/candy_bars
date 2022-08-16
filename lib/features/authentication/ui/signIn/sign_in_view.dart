@@ -38,7 +38,7 @@ class SignInView extends HookWidget {
                       SizedBox(height: 16),
                       ElevatedButton(
                           onPressed: () async {
-                            
+
                             await model.signUp(
                               emailController.text,
                               passwordController.text,

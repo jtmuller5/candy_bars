@@ -6,9 +6,20 @@ part 'aisle.g.dart';
 class Aisle {
   String? name;
 
-  String? id;
+  int? id;
 
-  Aisle({this.name, this.id});
+  @JsonKey(name: 'user_id')
+  String? userId;
+
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+
+  Aisle({
+    this.name,
+    this.id,
+    this.createdAt,
+    this.userId,
+  });
 
   factory Aisle.fromJson(Map<String, dynamic> json) => _$AisleFromJson(json);
 

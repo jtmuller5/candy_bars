@@ -14,33 +14,43 @@ class NewAisleView extends HookWidget {
     return ViewModelBuilder<NewAisleViewModel>.reactive(
       viewModelBuilder: () => NewAisleViewModel(),
       onModelReady: (model) {
-        // model.initialize();
+        nameController.addListener(() {
+          model.notifyListeners();
+        });
       },
       builder: (context, model, child) {
         return Scaffold(
+            appBar: AppBar(
+              title: Text('New Aisle'),
+              leading: CloseButton(
+                color: Colors.black,
+              ),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+            ),
+            extendBodyBehindAppBar: true,
             body: Background(
-          child: Stack(
-            children: [
-              Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(height: 72),
                     TextField(
                       controller: nameController,
+                      decoration: InputDecoration(label: Text('Aisle Name')),
+                    ),
+                    SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: nameController.text.isNotEmpty ? () {
+                        model.submitAisle(nameController.text);
+                      } : null,
+                      child: Text('Submit'),
                     )
                   ],
                 ),
               ),
-              Positioned(
-                top: 8,
-                left: 8,
-                child: CloseButton(),
-              ),
-            ],
-          ),
-        ));
+            ));
       },
     );
   }

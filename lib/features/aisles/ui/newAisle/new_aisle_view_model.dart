@@ -5,11 +5,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class NewAisleViewModel extends BaseViewModel {
   void initialize() {}
 
-  Future<void> submitAisle() async {
+  Future<void> submitAisle(String name) async {
     Aisle newAisle = Aisle(
-      name: 'Test',
+      name: name,
+      userId: Supabase.instance.client.auth.currentUser?.id,
+      createdAt: DateTime.now(),
+      //id: 1
     );
 
-    await Supabase.instance.client.from('bars').insert([newAisle.toJson()]);
+    await Supabase.instance.client.from('aisles').insert([newAisle.toJson()]);
   }
 }
