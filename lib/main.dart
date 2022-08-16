@@ -15,9 +15,6 @@ Future<void> main() async {
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
-    headers: {
-      HttpHeaders.authorizationHeader: 'Bearer ${dotenv.env['SUPABASE_ANON_KEY']!}',
-    },
   );
 
   runApp(const MyApp());

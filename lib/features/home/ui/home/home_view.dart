@@ -7,20 +7,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder
-    <HomeViewModel>.reactive(
+    return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
       onModelReady: (model) {
         // model.initialize();
       },
       builder: (context, model, child) {
         return Scaffold(
-            body: Column(
-              children: [
-                Container()
-              ],
-            )
-        );
+            body: Center(
+          child: Text('Welcome'),
+        ));
       },
     );
   }
