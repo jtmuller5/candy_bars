@@ -1,3 +1,5 @@
+import 'package:candy_bars/features/shared/ui/background.dart';
+import 'package:candy_bars/features/shared/ui/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
@@ -8,7 +10,6 @@ class SignInView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final TextEditingController emailController = useTextEditingController();
     final TextEditingController passwordController = useTextEditingController();
 
@@ -16,33 +17,42 @@ class SignInView extends HookWidget {
       viewModelBuilder: () => SignInViewModel(),
       builder: (context, model, child) {
         return Scaffold(
-            body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          body: Stack(
             children: [
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(label: Text('Email')),
+              Background(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextField(
+                        controller: emailController,
+                        decoration: InputDecoration(label: Text('Email')),
+                      ),
+                      SizedBox(height: 16),
+                      TextField(
+                        controller: passwordController,
+                        decoration: InputDecoration(label: Text('Password ')),
+                      ),
+                      SizedBox(height: 16),
+                      ElevatedButton(
+                          onPressed: () async {
+                            
+                            await model.signUp(
+                              emailController.text,
+                              passwordController.text,
+                            );
+                          },
+                          child: Text('Sign In'))
+                    ],
+                  ),
+                ),
               ),
-              SizedBox(height: 16),
-              TextField(
-                controller: passwordController,
-                decoration: InputDecoration(label: Text('Password ')),
-              ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                  onPressed: () {
-                    model.signUp(
-                      emailController.text,
-                      passwordController.text,
-                    );
-                  },
-                  child: Text('Sign In'))
+              if (model.isBusy) LoadingOverlay(),
             ],
           ),
-        ));
+        );
       },
     );
   }

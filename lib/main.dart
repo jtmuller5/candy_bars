@@ -32,8 +32,19 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       navigatorKey: navigatorKey,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        //primarySwatch: Colors.deepOrange,
         fontFamily: GoogleFonts.permanentMarker().fontFamily,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8)
+          )
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.deepOrange
+        )
       ),
       home: const SplashView(),
     );

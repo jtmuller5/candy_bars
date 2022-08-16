@@ -58,6 +58,7 @@ class HomeView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FloatingActionButton.extended(
+                  heroTag: 'aisle',
                   onPressed: () {
                     Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewAisleView()));
                   },
@@ -67,6 +68,7 @@ class HomeView extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 FloatingActionButton.extended(
+                  heroTag: 'bar',
                   onPressed: () {
                     Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewBarView()));
                   },

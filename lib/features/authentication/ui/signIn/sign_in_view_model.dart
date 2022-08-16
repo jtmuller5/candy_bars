@@ -9,6 +9,8 @@ class SignInViewModel extends BaseViewModel {
     String formattedEmail = email.trim();
     String formattedPassword = password.trim();
 
+    setBusy(true);
+
     try {
       final response = await Supabase.instance.client.auth.signUp(
         formattedEmail,
@@ -32,6 +34,8 @@ class SignInViewModel extends BaseViewModel {
         debugPrint('Sign in error: $e');
       }
     }
+
+    setBusy(false);
   }
 
   Future<void> signIn(String email, String password) async {

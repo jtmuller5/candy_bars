@@ -9,22 +9,22 @@ part of 'bar.dart';
 Bar _$BarFromJson(Map<String, dynamic> json) => Bar(
       id: json['id'] as String?,
       text: json['text'] as String?,
-      createdAt: json['createdAt'] == null
+      createdAt: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
+          : DateTime.parse(json['created_at'] as String),
+      updatedAt: json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
-      userId: json['userId'] as String?,
+          : DateTime.parse(json['updated_at'] as String),
+      userId: json['user_id'] as String?,
       type: $enumDecodeNullable(_$BarTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$BarToJson(Bar instance) => <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'userId': instance.userId,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'user_id': instance.userId,
       'type': _$BarTypeEnumMap[instance.type],
     };
 

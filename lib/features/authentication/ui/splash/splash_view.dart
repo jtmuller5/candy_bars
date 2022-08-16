@@ -1,6 +1,7 @@
 import 'package:candy_bars/features/authentication/ui/signIn/sign_in_view.dart';
 import 'package:candy_bars/features/authentication/ui/splash/splash_view_model.dart';
 import 'package:candy_bars/features/home/ui/home/home_view.dart';
+import 'package:candy_bars/features/shared/ui/background.dart';
 import 'package:candy_bars/main.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -36,8 +37,10 @@ class SplashView extends StatelessWidget {
       },
       builder: (context, model, child) {
         return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
+          body: Background(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         );
       },

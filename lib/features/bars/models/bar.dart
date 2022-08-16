@@ -8,10 +8,13 @@ class Bar {
 
   String? text;
 
+  @JsonKey(name: 'created_at')
   DateTime? createdAt;
 
+  @JsonKey(name: 'updated_at')
   DateTime? updatedAt;
 
+  @JsonKey(name: 'user_id')
   String? userId;
 
   BarType? type;
