@@ -1,4 +1,5 @@
 import 'package:candy_bars/features/shared/ui/background.dart';
+import 'package:candy_bars/features/shared/ui/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
@@ -29,27 +30,33 @@ class NewAisleView extends HookWidget {
               backgroundColor: Colors.transparent,
             ),
             extendBodyBehindAppBar: true,
-            body: Background(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: 72),
-                    TextField(
-                      controller: nameController,
-                      decoration: InputDecoration(label: Text('Aisle Name')),
+            body: Stack(
+              children: [
+                Background(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(height: 72),
+                        TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(label: Text('Aisle Name')),
+                        ),
+                        SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: nameController.text.isNotEmpty ? () async {
+                            await model.submitAisle(nameController.text);
+                            Navigator.of(context).pop();
+                          } : null,
+                          child: Text('Submit'),
+                        )
+                      ],
                     ),
-                    SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: nameController.text.isNotEmpty ? () {
-                        model.submitAisle(nameController.text);
-                      } : null,
-                      child: Text('Submit'),
-                    )
-                  ],
+                  ),
                 ),
-              ),
+                if(model.isBusy) LoadingOverlay(),
+              ],
             ));
       },
     );

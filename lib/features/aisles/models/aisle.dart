@@ -6,7 +6,9 @@ part 'aisle.g.dart';
 class Aisle {
   String? name;
 
-  int? id;
+  String? id;
+
+  int? number;
 
   @JsonKey(name: 'user_id')
   String? userId;
@@ -17,6 +19,7 @@ class Aisle {
   Aisle({
     this.name,
     this.id,
+    this.number,
     this.createdAt,
     this.userId,
   });

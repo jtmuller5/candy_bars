@@ -1,4 +1,6 @@
+import 'package:candy_bars/features/aisles/models/aisle.dart';
 import 'package:candy_bars/features/aisles/ui/newAisle/new_aisle_view.dart';
+import 'package:candy_bars/features/aisles/ui/widgets/aisle_tile.dart';
 import 'package:candy_bars/features/authentication/ui/signIn/sign_in_view.dart';
 import 'package:candy_bars/features/authentication/ui/splash/splash_view.dart';
 import 'package:candy_bars/features/bars/ui/newBar/new_bar_view.dart';
@@ -6,6 +8,7 @@ import 'package:candy_bars/features/shared/ui/background.dart';
 import 'package:candy_bars/main.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import './home_view_model.dart';
 
 class HomeView extends StatelessWidget {
@@ -47,6 +50,28 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Expanded(child: FutureBuilder<PostgrestResponse<dynamic>>(
+                    future: Supabase.instance.client.from('aisles').select('*').execute(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+
+                        debugPrint('Aisles: + ${snapshot.data?.data}');
+
+                        List<Aisle> aisles = snapshot.data!.data!.map<Aisle>((e) => Aisle.fromJson(e)).toList();
+
+                        return ListView.builder(
+                          padding: EdgeInsets.all(16),
+                            itemCount: aisles.length,
+                            itemBuilder: (context, index) {
+                              Aisle aisle = aisles[index];
+
+                              return AisleTile(aisle: aisle);
+                            });
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ))
                 ],
               ),
             ),
@@ -64,16 +89,6 @@ class HomeView extends StatelessWidget {
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   label: Text('Aisle'),
-                  icon: Icon(Icons.add),
-                ),
-                SizedBox(height: 8),
-                FloatingActionButton.extended(
-                  heroTag: 'bar',
-                  onPressed: () {
-                    Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewBarView()));
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  label: Text('Bar'),
                   icon: Icon(Icons.add),
                 ),
               ],

@@ -20,7 +20,8 @@ dependencies:
   json_serializable: ^6.3.1
   stacked: ^2.3.15
   supabase_flutter: 1.0.0-dev.4
-    # path: ../packages/supabase-flutter
+  # path: ../packages/supabase-flutter
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

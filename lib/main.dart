@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
             fillColor: Colors.white,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           ),
+          splashColor: Colors.lightBlue.withOpacity(.6),
           appBarTheme: AppBarTheme(
               elevation: 0,
               color: Colors.transparent,
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
                 color: Colors.black,
                 fontSize: 28,
               )),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange)),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.lightBlue)),
       home: const SplashView(),
     );
   }
