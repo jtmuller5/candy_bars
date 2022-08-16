@@ -16,12 +16,16 @@ class Aisle {
   @JsonKey(name: 'created_at')
   DateTime? createdAt;
 
+  @JsonKey(name: 'last_bar')
+  int? lastBar;
+
   Aisle({
     this.name,
     this.id,
     this.number,
     this.createdAt,
     this.userId,
+    this.lastBar,
   });
 
   factory Aisle.fromJson(Map<String, dynamic> json) => _$AisleFromJson(json);

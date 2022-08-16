@@ -21,7 +21,9 @@ class AisleView extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            leading: CloseButton(color: Colors.black,),
+            leading: CloseButton(
+              color: Colors.black,
+            ),
             title: Text(aisle.name ?? ''),
           ),
           extendBodyBehindAppBar: true,
@@ -33,14 +35,16 @@ class AisleView extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
-                  heroTag: 'bar',
-                  onPressed: () {
-                    Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewBarView()));
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  label: Text('Bar'),
-                  icon: Icon(Icons.add),
-                ),
+            heroTag: 'bar',
+            onPressed: () {
+              Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(
+                builder: (context) => NewBarView(aisle: aisle),
+              ));
+            },
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            label: Text('Candy Bar'),
+            icon: Icon(Icons.add),
+          ),
         );
       },
     );
