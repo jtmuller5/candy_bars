@@ -1,3 +1,6 @@
+import 'package:candy_bars/features/authentication/ui/signIn/sign_in_view.dart';
+import 'package:candy_bars/features/authentication/ui/splash/splash_view.dart';
+import 'package:candy_bars/main.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import './home_view_model.dart';
@@ -9,14 +12,29 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      onModelReady: (model) {
-        // model.initialize();
-      },
       builder: (context, model, child) {
         return Scaffold(
-            body: Center(
-          child: Text('Welcome'),
-        ));
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                ListTile(
+                  title: Text('Sign Out'),
+                  onTap: () async {
+                    await model.signOut();
+
+                    await Navigator.of(navigatorKey.currentContext!).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => SignInView()),
+                      (route) => false,
+                    );
+                  },
+                )
+              ],
+            ),
+          ),
+          body: Center(
+            child: Text('Welcome'),
+          ),
+        );
       },
     );
   }

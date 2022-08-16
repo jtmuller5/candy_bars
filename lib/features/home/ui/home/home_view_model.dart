@@ -1,16 +1,10 @@
 import 'package:stacked/stacked.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class HomeViewModel extends BaseViewModel{
+class HomeViewModel extends BaseViewModel {
+  void initialize() {}
 
-void initialize(){
-
+  Future<void> signOut() async {
+    await Supabase.instance.client.auth.signOut();
+  }
 }
-
-@override
-void dispose() {
-// TODO: implement dispose
-super.dispose();
-}
-
-}
-
