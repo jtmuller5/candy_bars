@@ -1,5 +1,6 @@
 import 'package:candy_bars/features/authentication/ui/signIn/sign_in_view.dart';
 import 'package:candy_bars/features/authentication/ui/splash/splash_view.dart';
+import 'package:candy_bars/features/bars/ui/newBar/new_bar_view.dart';
 import 'package:candy_bars/main.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -33,6 +34,15 @@ class HomeView extends StatelessWidget {
           ),
           body: Center(
             child: Text('Welcome'),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewBarView()));
+            },
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            label: Text('Bar'),
+            icon: Icon(Icons.add),
           ),
         );
       },
