@@ -5,6 +5,7 @@ import 'package:candy_bars/features/authentication/ui/splash/splash_view.dart';
 import 'package:candy_bars/features/home/ui/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: GoogleFonts.permanentMarker().fontFamily,
       ),
       home: const SplashView(),
     );

@@ -1,6 +1,8 @@
+import 'package:candy_bars/features/aisles/ui/newAisle/new_aisle_view.dart';
 import 'package:candy_bars/features/authentication/ui/signIn/sign_in_view.dart';
 import 'package:candy_bars/features/authentication/ui/splash/splash_view.dart';
 import 'package:candy_bars/features/bars/ui/newBar/new_bar_view.dart';
+import 'package:candy_bars/features/shared/ui/background.dart';
 import 'package:candy_bars/main.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -32,17 +34,48 @@ class HomeView extends StatelessWidget {
               ],
             ),
           ),
-          body: Center(
-            child: Text('Welcome'),
+          body: SafeArea(
+            child: Background(
+              child: Column(
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Welcome to your shop!',
+                        style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewBarView()));
-            },
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            label: Text('Bar'),
-            icon: Icon(Icons.add),
+          floatingActionButton: SizedBox(
+            width: 100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton.extended(
+                  onPressed: () {
+                    Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewAisleView()));
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  label: Text('Aisle'),
+                  icon: Icon(Icons.add),
+                ),
+                SizedBox(height: 8),
+                FloatingActionButton.extended(
+                  onPressed: () {
+                    Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(builder: (context) => NewBarView()));
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  label: Text('Bar'),
+                  icon: Icon(Icons.add),
+                ),
+              ],
+            ),
           ),
         );
       },

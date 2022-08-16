@@ -1,5 +1,5 @@
 name: candy_bars
-description: A new Flutter project.
+description: Micro-blogging that's guaranteed to be sweet
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -14,7 +14,10 @@ dependencies:
   flutter_dotenv: ^5.0.2
   flutter_hooks: ^0.18.5+1
   get_it: ^7.2.0
+  google_fonts: ^3.0.1
   injectable: ^1.5.3
+  json_annotation: ^4.6.0
+  json_serializable: ^6.3.1
   stacked: ^2.3.15
   supabase_flutter: 1.0.0-dev.4
     # path: ../packages/supabase-flutter
@@ -31,3 +34,4 @@ flutter:
 
   assets:
     - .env
+    - assets/images/
